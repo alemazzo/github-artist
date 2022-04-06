@@ -6,15 +6,15 @@ from logo import logo
 
 def add_random_letter_to_file(repo, file_name):
     command = f'cd {repo} && echo "a" >> {file_name}' 
-    subprocess.call(command, shell=True, stdout=subprocess.DEVNULL)
+    subprocess.call(command, shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
 def git_add_all_to_stage(repo):
     command = f'cd {repo} && git add .'
-    subprocess.call(command, shell=True, stdout=subprocess.DEVNULL)
+    subprocess.call(command, shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     
 def git_commit_with_specified_date(repo, date, commit_message = None):
     command = f'cd {repo} && git commit --date="{date}" -m "{date}"'
-    subprocess.call(command, shell=True, stdout=subprocess.DEVNULL)
+    subprocess.call(command, shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
 def make_commit_with_specified_date(repo, date, commit_message = None):
     add_random_letter_to_file(repo, "test")
@@ -43,6 +43,7 @@ def clone_repo_if_not_exists_already(username, repo, protocol = "ssh"):
 def execute(repo, date, numbers_of_commits_per_day = 1):
     commits = 0
     total_commits = len(dates) * numbers_of_commits_per_day
+    time_per_commit = None
     print("Info:")
     print(f"Number of dates: {len(dates)}")
     print(f"Number of commits per day: {numbers_of_commits_per_day}")
@@ -50,11 +51,14 @@ def execute(repo, date, numbers_of_commits_per_day = 1):
     print("-" * 70)
     for date in dates:
         for i in range(numbers_of_commits_per_day):
-            start_time = datetime.now()
-            make_commit_with_specified_date(repo, date)
-            end_time = datetime.now()
-            total_seconds = (end_time - start_time).total_seconds()
-            eta = total_seconds * (total_commits - commits)
+            if not time_per_commit:
+                start_time = datetime.now()
+                make_commit_with_specified_date(repo, date)
+                end_time = datetime.now()
+                time_per_commit = (end_time - start_time).total_seconds()
+            else:
+                make_commit_with_specified_date(repo, date)
+            eta = time_per_commit * (total_commits - commits)
             formatted_eta = str(timedelta(seconds=int(eta)))
             commits += 1
             percentage = (commits / total_commits) * 100
