@@ -1,1 +1,1 @@
-# github-history-drawer
+# github-artist
