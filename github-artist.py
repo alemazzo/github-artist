@@ -2,6 +2,7 @@
 import subprocess, sys, os
 from datetime import date, timedelta, datetime
 from letters import stringToMatrix
+from logo import logo
 
 def add_random_letter_to_file(repo, file_name):
     command = f'cd {repo} && echo "a" >> {file_name}' 
@@ -22,7 +23,10 @@ def make_commit_with_specified_date(repo, date, commit_message = None):
 
 def git_push_to_remote_repo(repo):
     command = f"cd {repo} && git push"
-    subprocess.call(command, shell=True, stdout=subprocess.DEVNULL)
+    print(f"Pushing...", end="\r")
+    subprocess.call(command, shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    print(f"Pushed successfully!")
+    print("-" * 70)
     
 def clone_repo_if_not_exists_already(username, repo, protocol = "ssh"):
     if protocol == "ssh":
@@ -31,7 +35,7 @@ def clone_repo_if_not_exists_already(username, repo, protocol = "ssh"):
         command = f"git clone https://github.com/{username}/{repo}.git"
         
     if not os.path.exists(repo):
-        subprocess.call(command, shell=True, stdout=subprocess.DEVNULL)
+        subprocess.call(command, shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
 
 
@@ -43,7 +47,7 @@ def execute(repo, date, numbers_of_commits_per_day = 1):
     print(f"Number of dates: {len(dates)}")
     print(f"Number of commits per day: {numbers_of_commits_per_day}")
     print(f"Number of commits: {total_commits}")
-    print("-" * 50)
+    print("-" * 70)
     for date in dates:
         for i in range(numbers_of_commits_per_day):
             start_time = datetime.now()
@@ -56,6 +60,7 @@ def execute(repo, date, numbers_of_commits_per_day = 1):
             percentage = (commits / total_commits) * 100
             print(f"Status: Commits: {commits} -- {percentage:.2f}% -- ETA: {formatted_eta}", end="\r")
     print(f"Commits: {commits} -- 100%")
+    print("-" * 70)
     
 if __name__ == "__main__":
     
@@ -81,10 +86,14 @@ if __name__ == "__main__":
 
     
     # Start
-    print("-" * 50)
+    print("-" * 70)
+    print(logo)
+    print("-" * 70)
     print(f"Starting write {message} to {username}'s github history.")
     print(f"Using repo: {username}/{repo}")
-    print("-" * 50)
+    print("-" * 70)
     clone_repo_if_not_exists_already(username, repo)
     execute(repo, dates, number_of_commits_per_day)
     git_push_to_remote_repo(repo)
+    print("Art completed")
+    print("-" * 70)
