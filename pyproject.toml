@@ -1,0 +1,31 @@
+[project]
+name = "github-artist"
+version = "2.0.0"
+description = "Create beautiful art in your GitHub contribution graph"
+readme = "README.md"
+requires-python = ">=3.12"
+license = { file = "LICENSE" }
+authors = [
+    { name = "alemazzo" }
+]
+keywords = ["github", "contribution", "graph", "art", "ascii"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = []
+
+[project.scripts]
+github-artist = "github_artist.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/alemazzo/github-artist"
+Repository = "https://github.com/alemazzo/github-artist"
+Issues = "https://github.com/alemazzo/github-artist/issues"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
