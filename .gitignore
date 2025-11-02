@@ -45,7 +45,4 @@ Thumbs.db
 temp/
 *.txt
 github-artist-config.json
-
-# Git repositories (cloned for art creation)
-*/
-!github_artist/
+example-config.json
