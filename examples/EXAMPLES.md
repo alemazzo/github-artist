@@ -118,6 +118,16 @@ github-artist preview "Hello World!" --spacing 2
 github-artist create developer hello-world "Hello World!" --spacing 2 --commits 2
 ```
 
+### Example 5: Among Us Character
+
+```bash
+# Preview the Among Us character
+github-artist preview "👾"
+
+# Create Among Us art with high visibility
+github-artist create myusername among-us "👾" --commits 5 --yes
+```
+
 ## Configuration File Usage
 
 ### Create a Configuration File
@@ -170,6 +180,9 @@ github-artist preview "CODE ★"
 
 # Hearts
 github-artist preview "I ❤ CODE"
+
+# Among Us character
+github-artist preview "👾"
 ```
 
 ## Tips and Best Practices

@@ -195,7 +195,7 @@ GitHub Artist supports:
 - **Lowercase letters**: a-z
 - **Numbers**: 0-9
 - **Special characters**: . , ! ? - _ + = : ; ' " ( ) [ ] / \ @ # & < >
-- **Symbols**: ❤ ★
+- **Symbols**: ❤ ★ 👾 (Among Us character)
 
 Use `github-artist chars` to see the complete list!
 
@@ -232,6 +232,16 @@ github-artist create myusername year-2024 "2024" --start-date 2024-01-07
 
 ```bash
 github-artist create myusername lowercase-art "hello world" --spacing 1
+```
+
+### Example 5: Use special characters (Among Us!)
+
+```bash
+# Create Among Us character art
+github-artist create myusername among-us-art "👾" --commits 5
+
+# Preview it first
+github-artist preview "👾"
 ```
 
 ## 🔧 Configuration
