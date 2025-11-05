@@ -1,0 +1,16 @@
+{
+  "username": "your-github-username",
+  "repo_name": "github-art",
+  "protocol": "https",
+  "text": "HELLO",
+  "letter_spacing": 1,
+  "commits_per_day": 1,
+  "start_date": null,
+  "auto_calculate_start": true,
+  "weeks_in_advance": 1,
+  "commit_message_template": null,
+  "remote_name": "origin",
+  "branch_name": "main",
+  "preview_only": false,
+  "auto_push": false
+}
